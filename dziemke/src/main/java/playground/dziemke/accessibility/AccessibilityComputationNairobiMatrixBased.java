@@ -28,6 +28,7 @@ import org.matsim.contrib.accessibility.AccessibilityConfigGroup;
 import org.matsim.contrib.accessibility.AccessibilityConfigGroup.AreaOfAccesssibilityComputation;
 import org.matsim.contrib.accessibility.AccessibilityModule;
 import org.matsim.contrib.accessibility.FacilityTypes;
+import org.matsim.contrib.accessibility.Labels;
 import org.matsim.contrib.accessibility.Modes4Accessibility;
 import org.matsim.contrib.accessibility.utils.AccessibilityUtils;
 import org.matsim.contrib.accessibility.utils.VisualizationUtils;
@@ -100,7 +101,7 @@ public class AccessibilityComputationNairobiMatrixBased {
 		
 		final List<String> activityTypes = Arrays.asList(new String[]{FacilityTypes.WORK});
 
-		final ActivityFacilities densityFacilities = AccessibilityUtils.createFacilityForEachLink(scenario.getNetwork());
+		final ActivityFacilities densityFacilities = AccessibilityUtils.createFacilityForEachLink(Labels.POPULATION_DENSITIY, scenario.getNetwork());
 
 		final Controler controler = new Controler(scenario);
 
