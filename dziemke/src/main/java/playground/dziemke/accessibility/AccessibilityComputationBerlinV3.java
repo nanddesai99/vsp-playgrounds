@@ -36,8 +36,9 @@ public class AccessibilityComputationBerlinV3 {
 		Config config = ConfigUtils.loadConfig("../../matsim-berlin/scenarios/berlin-v5.0-1pct-2018-06-18/input/berlin-5.0_config.xml");
 
 		config.controler().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
-		config.controler().setOutputDirectory("../../shared-svn/projects/accessibility_berlin/output/v3/car_edu_given-loc/");
-		config.controler().setRunId("de_berlin_given-loc_2");
+		String runId = "de_berlin_given-loc_2";
+		config.controler().setOutputDirectory("../../shared-svn/projects/accessibility_berlin/output/v3/" + runId + "/");
+		config.controler().setRunId(runId);
 
 		config.facilities().setInputFile(new File("../../shared-svn/projects/accessibility_berlin/osm/berlin/amenities/2018-05-30/facilities.xml").getAbsolutePath());
 		
