@@ -70,5 +70,11 @@
 		<artifactId>matsim-sbb-extensions</artifactId>
 		<version>0.10.0</version>
 	</dependency> -->
+	<!-- This dependency is required to be able to push to the GeoServer -->
+		<dependency>
+  		<groupId>org.geotools.jdbc</groupId>
+  		<artifactId>gt-jdbc-postgis</artifactId>
+  		<version>13.0</version>
+ 	</dependency>
   </dependencies>
 </project>
