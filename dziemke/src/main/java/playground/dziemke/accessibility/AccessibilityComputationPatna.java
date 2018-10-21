@@ -52,7 +52,7 @@ public class AccessibilityComputationPatna {
 	public static final Logger LOG = Logger.getLogger(AccessibilityComputationPatna.class);
 	
 	public static void main(String[] args) throws IOException {
-		Double cellSize = 50.;
+		int tileSize_m = 50;
 		boolean push2Geoserver = false;
 		boolean createQGisOutput = true;
 		
@@ -86,10 +86,10 @@ public class AccessibilityComputationPatna {
 		config.controler().setOutputDirectory(accessibilityOutputDirectory);
 		config.controler().setFirstIteration(0); // new
 		config.controler().setLastIteration(0);
-		config.controler().setRunId("in_patna_" + cellSize.toString().split("\\.")[0]);
+		config.controler().setRunId("in_patna_" + tileSize_m);
 		
 		AccessibilityConfigGroup acg = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class);
-		acg.setCellSizeCellBasedAccessibility(cellSize.intValue());
+		acg.setTileSize_m(tileSize_m);
 		acg.setAreaOfAccessibilityComputation(AreaOfAccesssibilityComputation.fromBoundingBox);
 		acg.setEnvelope(envelope);
 		acg.setComputingAccessibilityForMode(Modes4Accessibility.freespeed, true);
@@ -128,7 +128,7 @@ public class AccessibilityComputationPatna {
 			final Integer range = 9; // In the current implementation, this must always be 9
 			final Double lowerBound = 1.0; // (upperBound - lowerBound) ideally nicely divisible by (range - 2) // TODO
 			final Double upperBound = 1.7;
-			final int populationThreshold = (int) (0 / (1000/cellSize * 1000/cellSize)); // TODO
+			final int populationThreshold = (int) (0 / (1000/tileSize_m * 1000/tileSize_m)); // TODO
 			
 			String osName = System.getProperty("os.name");
 			String workingDirectory = config.controler().getOutputDirectory();
@@ -136,8 +136,7 @@ public class AccessibilityComputationPatna {
 				String actSpecificWorkingDirectory = workingDirectory + actType + "/";
 				for (Modes4Accessibility mode : acg.getIsComputingMode()) {
 					VisualizationUtils.createQGisOutputGraduatedStandardColorRange(actType, mode.toString(), envelope, workingDirectory,
-							scenarioCRS, includeDensityLayer, lowerBound, upperBound, range, cellSize.intValue(),
-							populationThreshold);
+							scenarioCRS, includeDensityLayer, lowerBound, upperBound, range, tileSize_m, populationThreshold);
 					VisualizationUtils.createSnapshot(actSpecificWorkingDirectory, mode.toString(), osName);
 				}
 			}

@@ -57,7 +57,7 @@ public class CreateMatrixBasedPtInputs {
 		
 		// Parameters
 		Boolean measuringPointsAsPTStops = true; // if "true" -> use regular, user-defined locations instead of stops from schedule
-		Double cellSize = 1000.; // only relevant if "meauringPointsAsPTStops = true"
+		int tileSize_m = 1000; // only relevant if "meauringPointsAsPTStops = true"
 //		Double cellSize = 500.; // only relevant if "meauringPointsAsPTStops = true"
 		Double departureTime = 8. * 60 * 60;
 		Integer numberOfThreads = 1;
@@ -71,7 +71,7 @@ public class CreateMatrixBasedPtInputs {
 			transitScheduleFile = args[1];
 			outputRoot = args[2];
 			measuringPointsAsPTStops = Boolean.parseBoolean(args[3]);
-			cellSize = Double.parseDouble(args[4]);
+			tileSize_m = Integer.parseInt(args[4]);
 			departureTime = Double.parseDouble(args[5]);
 			numberOfThreads = Integer.parseInt(args[6]);
 			bounds = args[7];
@@ -82,7 +82,7 @@ public class CreateMatrixBasedPtInputs {
 		log.info("transitScheduleFile = " + transitScheduleFile);
 		log.info("outputFileRoot = " + outputRoot);
 		log.info("measuringPointsAsPTStops = " + measuringPointsAsPTStops);
-		log.info("cellSize = " + cellSize);
+		log.info("tileSize = " + tileSize_m);
 		log.info("departureTime = "	+ departureTime);
 		log.info("numberOfThreads = " + numberOfThreads);
 		log.info("bounds = " + bounds);
@@ -117,7 +117,7 @@ public class CreateMatrixBasedPtInputs {
 			
 			ActivityFacilitiesImpl measuringPoints;
 			measuringPoints = GridUtils.createGridLayerByGridSizeByBoundingBoxV2(
-					boundingBox.getXMin(), boundingBox.getYMin(), boundingBox.getXMax(), boundingBox.getYMax(), cellSize);
+					boundingBox.getXMin(), boundingBox.getYMin(), boundingBox.getXMax(), boundingBox.getYMax(), tileSize_m);
 
 			// Conversion from ActivityFacilities=measuringPoints to coordinates
 //			for (ActivityFacility activityFacility : measuringPoints.getFacilities().values()) {

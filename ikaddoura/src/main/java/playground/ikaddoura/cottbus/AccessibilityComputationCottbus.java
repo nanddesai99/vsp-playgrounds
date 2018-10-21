@@ -94,7 +94,7 @@ public class AccessibilityComputationCottbus {
 		config.plansCalcRoute().setTeleportedModeSpeed(TransportMode.walk, 1.3888889);
 		
 		AccessibilityConfigGroup acg = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class);
-		acg.setCellSizeCellBasedAccessibility(cellSize.intValue());
+		acg.setTileSize_m(cellSize.intValue());
 		acg.setAreaOfAccessibilityComputation(AreaOfAccesssibilityComputation.fromBoundingBox);
 		acg.setEnvelope(envelope);
 		acg.setComputingAccessibilityForMode(Modes4Accessibility.freespeed, true); // if this is not set to true, output CSV will give NaN values

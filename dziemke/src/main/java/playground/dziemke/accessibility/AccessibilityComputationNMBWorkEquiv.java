@@ -38,7 +38,7 @@ public class AccessibilityComputationNMBWorkEquiv {
 	public static final Logger log = Logger.getLogger(AccessibilityComputationNMBWorkEquiv.class);
 	
 //	private static final double cellSize = 1000.;
-	private static final double cellSize = 10000.;
+	private static final int cellSize = 10000;
 
 	
 	public static void main(String[] args) {

@@ -37,7 +37,7 @@ public class AccessibilityComputationBerlinV3 {
 
 		config.controler().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
 		config.controler().setOutputDirectory("../../shared-svn/projects/accessibility_berlin/output/v3/car_edu_given-loc/");
-		config.controler().setRunId("de_berlin_given-loc");
+		config.controler().setRunId("de_berlin_given-loc_2");
 
 		config.facilities().setInputFile(new File("../../shared-svn/projects/accessibility_berlin/osm/berlin/amenities/2018-05-30/facilities.xml").getAbsolutePath());
 		
@@ -54,7 +54,7 @@ public class AccessibilityComputationBerlinV3 {
 		Scenario scenario = ScenarioUtils.loadScenario(config);
 
 		// Accessibility configurations
-		Double cellSize = 500.;
+		int tileSize_m = 500;
 		boolean push2Geoserver = true; // Set true for run on server
 		boolean createQGisOutput = true; // Set false for run on server
 		
@@ -69,7 +69,7 @@ public class AccessibilityComputationBerlinV3 {
 		acg.setMeasuringPointsFile("../../shared-svn/projects/accessibility_berlin/av/waittimes_500_access_grid/facilities.xml");
 //		acg.setShapeFileCellBasedAccessibility("../../shared-svn/studies/countries/de/open_berlin_scenario/input/shapefiles/2013/Berlin_DHDN_GK4.shp");
 		acg.setEnvelope(envelope);
-		acg.setCellSizeCellBasedAccessibility(cellSize.intValue());
+		acg.setTileSize_m(tileSize_m);
 //		acg.setComputingAccessibilityForMode(Modes4Accessibility.walk, true);
 		acg.setComputingAccessibilityForMode(Modes4Accessibility.freespeed, false);
 		acg.setComputingAccessibilityForMode(Modes4Accessibility.car, true);
@@ -125,7 +125,7 @@ public class AccessibilityComputationBerlinV3 {
 				String actSpecificWorkingDirectory = workingDirectory + actType + "/";
 				for (Modes4Accessibility mode : acg.getIsComputingMode()) {
 					VisualizationUtils.createQGisOutputRuleBasedStandardColorRange(actType, mode.toString(), envelope, workingDirectory,
-							scenarioCRS, includeDensityLayer, lowerBound, upperBound, range, cellSize.intValue(), populationThreshold);
+							scenarioCRS, includeDensityLayer, lowerBound, upperBound, range, tileSize_m, populationThreshold);
 //							scenarioCRS, includeDensityLayer, lowerBound, upperBound, range, cellSize, populationThreshold);
 					VisualizationUtils.createSnapshot(actSpecificWorkingDirectory, mode.toString(), osName);
 				}

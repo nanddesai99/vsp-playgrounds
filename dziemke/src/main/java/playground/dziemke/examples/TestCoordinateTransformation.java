@@ -35,8 +35,10 @@ public class TestCoordinateTransformation {
 //		Coord coordSW = new Coord(13.3275, 52.5384); // Berlin-GG southwest corner
 //		Coord coordNE = new Coord(13.3436, 52.5268); // Berlin-SG northeast corner
 //		Coord coordSW = new Coord(13.3121, 52.5119); // Berlin-SG southwest corner
-		Coord coordNE = new Coord(4434888.563,5416627.515); // Eichstaett
-		Coord coordSW = new Coord(4468750,5331600); // München
+//		Coord coordNE = new Coord(4434888.563,5416627.515); // Eichstaett
+//		Coord coordSW = new Coord(4468750,5331600); // München
+		Coord coordNE = new Coord(4594897.18, 5806067.102); // Berlin
+		Coord coordSW = new Coord(4594897.18, 5806067.102);
 		
 		Coord convertedCoordNE = transformation.transform(coordNE);
 		Coord convertedCoordSW = transformation.transform(coordSW);
